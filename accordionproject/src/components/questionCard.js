@@ -12,15 +12,15 @@ export default function QuestionCard() {
     console.log(data);
   return (
     <Box className="mainBox">
-      <Grid container spacing={4}>
+      <Grid container spacing={4} sx={{
+        padding: "2rem",
+      }}>
         <Grid
           item
           xs={4}
-          justifyContent="center"
-          alignItems="start"
-          display="flex"
+          
         >
-          <Typography fontSize="1.5rem" className=".font">
+          <Typography fontSize="1.5rem" className="fontsRobotoMono" fontWeight="bold">
             Questions and Answers About Login
           </Typography>
         </Grid>

@@ -1,28 +1,53 @@
-.mainBody {
+* {
+  padding: 0;
+  margin: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Roboto+Mono&display=swap');
+
+/* .mainBody {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    text-align: center;
-    width: 100vw;
     height: 100vh;
-    position: absolute;
+    width: 100vw;
     margin: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     background: #4b145b;
-    color: #4b145b;
-  }
+  } */
+
+body {
+  background: #4b145b;
+  height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
 
 .mainBox {
     width: 900px;
-    height: 400px;
     background: white;
-    border-radius: 10px;
+    border-radius: 5px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10;
   }
 
-.fonts {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+.fontsRobotoMono {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.iconBox {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  background: #eae6eb;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+
 }

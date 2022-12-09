@@ -3,6 +3,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Box,
   Typography,
 } from "@mui/material";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
@@ -18,6 +19,10 @@ export default function QuestionAccordian({ question, answer }) {
         elevation={2}
         sx={{
           mb: 2,
+          alignItems: "center",
+          justifyContent: "center",
+          p: 1.5,
+          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
         }}
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
@@ -25,20 +30,27 @@ export default function QuestionAccordian({ question, answer }) {
         <AccordionSummary
           expandIcon={
             expanded ? (
-              <AiOutlineMinus color="#ca7c96" />
+              <Box className="iconBox">
+                <AiOutlineMinus color="#b4345c" />
+              </Box>
             ) : (
-              <AiOutlinePlus color="#ca7c96" />
+              <Box className="iconBox">
+                <AiOutlinePlus color="#b4345c" opacity="1.0" />
+              </Box>
             )
           }
           aria-controls="panel1a-content"
           id="panel1a-header"
+          
         >
-          <Typography fontWeight="bold" className=".font" fontSize="1rem">
+          <Typography fontWeight="bold" className="fontsRobotoMono" fontSize="1rem">
             {question}
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography fontSize="0.8rem" className=".font">{answer}</Typography>
+          <Typography fontSize="0.8rem" className=".font">
+            {answer}
+          </Typography>
         </AccordionDetails>
       </Accordion>
     </>
