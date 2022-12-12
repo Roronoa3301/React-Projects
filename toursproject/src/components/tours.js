@@ -19,23 +19,26 @@ export default function Tours({ tours, removeTour }) {
         spacing={3}
         sx={{ justifyContent: "center", alignItems: "center" }}
       >
-        <Grid item xs={12}>
+        <Grid item xs={12} sx={{alignItems: "center", justifyContent: "center", display: "flex"}}>
           <Typography
             variant="h2"
             fontWeight="bold"
             sx={{
               color: "black",
-              display: "inline",
+              
             }}
           >
-            <Typography variant="h2" sx={{ display: "inline" }}>
+            <Typography variant="h2" >
               Our Tours
             </Typography>
             <Divider
               sx={{
                 borderBottomWidth: 5,
                 borderBottomColor: "#49adef",
-                mx: 75,
+                width: "40vh",
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
               }}
             />
           </Typography>
