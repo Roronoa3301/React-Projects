@@ -1,11 +1,7 @@
 import {
   Card,
-  CardHeader,
   List,
-  ListItem,
-  ListItemAvatar,
   Avatar,
-  ListItemText,
   Grid,
   Box,
   Typography,
@@ -15,14 +11,16 @@ import React from "react";
 
 const birthdayList = ({ people }) => {
   return (
-    <List>
+    <List sx={{p: 1, display: "flex", flexDirection: "column"}}>
       {people.map((person) => {
-        const { id, name, age, image } = person;
+        const { name, age, image } = person;
         return (
           <Card elevation={0}>
             <CardContent sx={{p: 0}}>
-              <Grid container spacing={11}>
-                <Grid item xs={2}>
+              <Grid container>
+                <Grid item xs={2} sx={{
+                  paddingLeft: "15px",
+                }}>
                   <Avatar
                     alt="Remy Sharp"
                     src={image}
@@ -33,12 +31,13 @@ const birthdayList = ({ people }) => {
                     }}
                   />
                 </Grid>
-                <Grid item xs={10} alignItems="center" display="flex">
+                <Grid item xs={10} sx={{alignItems: "center", justifyContent: "center", display: "flex"}}>
                   <Box>
-                    <Typography variant="h6" fontWeight="bold">
+                    <Typography variant="h6" className="fontsRobotoMono">
                       {name}
                     </Typography>
                     <Typography
+                      className="fontsRobotoMono"
                       variant="subtitle1"
                       sx={{
                         color: "#707070",
@@ -51,34 +50,6 @@ const birthdayList = ({ people }) => {
               </Grid>
             </CardContent>
           </Card>
-          //   <Grid container>
-          //     <Grid item xs={2}>
-          //       <Box component="img" src={image} sx={{width: "75px", height: "75px", objectFit: "cover"}} borderRadius="50%">
-          //       </Box>
-          //     </Grid>
-          //     <Grid item xs={10} display="flex" alignItems="center">
-          //         <Typography>
-          //             {name} {age}
-          //         </Typography>
-          //     </Grid>
-          //   </Grid>
-
-          // <ListItem>
-          //     <ListItemAvatar>
-          //         <Avatar>
-          //         <img style={{width: 75, height: 75, objectFit: "cover", borderRadius: "50%", boxShadow: "5px 5px 5px 5px #888888"}} src={image} alt={name} />
-          //         </Avatar>
-          //     </ListItemAvatar>
-          //     <ListItemText primary={name} secondary={age + ' years'} />
-          // </ListItem>
-
-          // <article key={id} className='person'>
-          //     <img src={image} alt={name} />
-          //     <div>
-          //     <h4>{name}</h4>
-          //     <p>{age} years</p>
-          //     </div>
-          // </article>
         );
       })}
     </List>
