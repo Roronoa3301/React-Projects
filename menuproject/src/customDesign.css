@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Roboto+Mono&display=swap");
+
+body {
+  background: #f1f5f8;
+  font-family: "Roboto Mono", monospace;
+}
+
+.mainBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto Mono", monospace;
+}
+
+.mainBox.title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: "Roboto Mono", monospace;
+}
+
+.mainBox.underline {
+  width: 5rem;
+  height: 0.25rem;
+  background: #c59d5f;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.categoryButton {
+    margin-top: 2;
+    margin-bottom: 2;
+    margin-left: 2;
+    margin-right: 2;
+    color: #c59d5f;
+}
+
+.categoryButton:hover {
+  color: #fff;
+  background-color: #c59d5f;
+}
+
+.fontsRobotoMono {
+  font-family: "Roboto Mono", monospace;
+}
