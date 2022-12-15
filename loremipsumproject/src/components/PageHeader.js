@@ -14,7 +14,7 @@ export default function PageHeader() {
       <Typography
         textAlign="center"
         fontWeight="bold"
-        variant="h4"
+        fontSize="1.9rem"
         color="#06325b"
         paddingRight={3}
         fontFamily="Roboto Mono"
