@@ -4,3 +4,62 @@ body {
   background: #f1f5f8;
   font-family: "Roboto Mono", monospace;
 }
+
+.alert {
+  margin-bottom: 1rem;
+  height: 1.25rem;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  font-size: 0.7rem;
+  border-radius: 0.25rem;
+  letter-spacing: 0.1rem;
+  text-transform: capitalize;
+  font-family: "Roboto Mono", monospace;
+  padding: 0.25rem;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.grocery-text {
+  padding: 0.25rem;
+  padding-left: 1rem;
+  background: hsl(210, 36%, 96%);
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  border-color: transparent;
+  font-size: 1rem;
+  flex: 1 0 auto;
+  color: hsl(210, 22%, 49%);
+}
+
+.grocery-btn {
+  background: hsl(205, 86%, 81%);
+  border-color: transparent;
+  flex: 0 0 5rem;
+  display: grid;
+  align-items: center;
+  padding: 0.25rem;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  cursor: pointer;
+  content: hsl(205, 78%, 60%);
+  transition: all 0.3s linear;
+  font-size: 0.85rem;
+}
+.grocery-btn:hover {
+  background: hsl(205, 78%, 60%);
+  color: #fff;
+}
