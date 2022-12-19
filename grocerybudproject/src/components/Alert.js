@@ -7,6 +7,7 @@ export default function Alert({ type, msg, removeAlert, list }) {
       removeAlert();
     }, 3000);
     return () => clearTimeout(timeout);
+    // eslint-disable-next-line
   }, [list]);
   return <Typography className={`alert alert-${type}`}>{msg}</Typography>;
 }

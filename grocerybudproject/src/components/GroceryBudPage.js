@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Container, Button, Typography, TextField, Box } from "@mui/material";
+import {
+  Container,
+  Button,
+  Typography,
+  TextField,
+  Box,
+  Card,
+  CardContent,
+} from "@mui/material";
 import Alert from "./Alert";
 import List from "./List";
 
@@ -74,8 +82,7 @@ export default function GroceryBudPage() {
       maxWidth="sm"
       sx={{
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+
         flexDirection: "column",
         my: 10,
         boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
@@ -84,18 +91,22 @@ export default function GroceryBudPage() {
         background: "#fff",
       }}
     >
-      <Box>
-        {alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />}
-        <Typography
-          variant="h4"
-          component="h1"
-          textAlign="center"
-          sx={{ mb: 2, fontFamily: "Roboto Mono", color: "#06325b" }}
-        >
-          Grocery Bud
-        </Typography>
-        {/* <List /> */}
-      </Box>
+      {alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />}
+      <Typography
+        variant="h4"
+        component="h1"
+        textAlign="center"
+        sx={{
+          mb: 2,
+          fontFamily: "Roboto Mono",
+          color: "#06325b",
+          fontWeight: "bold",
+        }}
+      >
+        Grocery Bud
+      </Typography>
+      {/* <List /> */}
+
       <Box alignItems="center" display="flex">
         <TextField
           value={name}
@@ -103,31 +114,60 @@ export default function GroceryBudPage() {
           onChange={(e) => setName(e.target.value)}
           placeholder="e.g. eggs"
           className="grocery-text"
+          inputProps={{
+            sx: { fontFamily: "Roboto Mono", letterSpacing: "0.0rem" },
+          }}
         ></TextField>
         <Button
           variant="contained"
-          color="primary"
-          fontFamily="Roboto Mono"
           className="grocery-btn"
-          sx={{ mx: 1 }}
+          sx={{ mx: 1, fontFamily: "Roboto Mono", textTransform: "none" }}
           onClick={handleSubmit}
         >
-          {isEditing ? "edit" : "submit"}
+          {isEditing ? "Edit" : "Submit"}
         </Button>
       </Box>
       {list.length > 0 && (
-        <Box justifyContent="center" display="flex" flexDirection="column">
-          <List items={list} removeItem={removeItem} editItem={editItem} />
-          <Button
-            onClick={clearList}
-            className="clear-btn"
-            sx={{
-              color: "hsl(360, 71%, 66%)",
-            }}
-          >
-            Clear Items
-          </Button>
-        </Box>
+        <Card
+          sx={{
+            my: 2,
+            boxShadow: "0 0 0 0 rgba(0,0,0,0.0)",
+          }}
+        >
+          <CardContent>
+            {list.map((item) => {
+              return (
+                <List
+                  key={item.id}
+                  title={item.title}
+                  removeItem={() => removeItem(item.id)}
+                  editItem={() => editItem(item.id)}
+                />
+              );
+            })}
+            <Box
+              justifyContent="center"
+              display="flex"
+              alignItems="end"
+              sx={{
+                mt: 4,
+                mb: -3,
+              }}
+            >
+              <Button
+                onClick={clearList}
+                className="clear-btn"
+                sx={{
+                  color: "hsl(360, 71%, 66%)",
+                  fontFamily: "Roboto Mono",
+                  textTransform: "none",
+                }}
+              >
+                Clear Items
+              </Button>
+            </Box>
+          </CardContent>
+        </Card>
       )}
     </Container>
   );

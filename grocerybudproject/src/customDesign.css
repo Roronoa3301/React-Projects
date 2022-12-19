@@ -16,7 +16,7 @@ body {
   letter-spacing: 0.1rem;
   text-transform: capitalize;
   font-family: "Roboto Mono", monospace;
-  padding: 0.25rem;
+  padding: 0.50rem;
 }
 
 .alert-success {
@@ -93,6 +93,7 @@ body {
   color: hsl(209, 61%, 16%);
   letter-spacing: 2px;
   transition: all 0.3s linear;
+  font-family: "Roboto Mono", monospace;
 }
 
 .delete-btn {
