@@ -3,9 +3,18 @@ import { Container, Button, Typography, TextField, Box } from "@mui/material";
 import Alert from "./Alert";
 import List from "./List";
 
+const getLocalStorage = () => {
+  let list = localStorage.getItem("list");
+  if (list) {
+    return (list = JSON.parse(localStorage.getItem("list")));
+  } else {
+    return [];
+  }
+};
+
 export default function GroceryBudPage() {
   const [name, setName] = useState("");
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getLocalStorage());
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
@@ -56,6 +65,10 @@ export default function GroceryBudPage() {
     setName(specificItem.title);
   };
 
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
+
   return (
     <Container
       maxWidth="sm"
@@ -68,6 +81,7 @@ export default function GroceryBudPage() {
         boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
         borderRadius: "0.25rem",
         p: 5,
+        background: "#fff",
       }}
     >
       <Box>
@@ -81,32 +95,40 @@ export default function GroceryBudPage() {
           Grocery Bud
         </Typography>
         {/* <List /> */}
-        <Box alignItems="center">
-          <TextField
-            value={name}
-            size="small"
-            onChange={(e) => setName(e.target.value)}
-            placeholder="e.g. eggs"
-            className="grocery-text"
-          ></TextField>
+      </Box>
+      <Box alignItems="center" display="flex">
+        <TextField
+          value={name}
+          size="small"
+          onChange={(e) => setName(e.target.value)}
+          placeholder="e.g. eggs"
+          className="grocery-text"
+        ></TextField>
+        <Button
+          variant="contained"
+          color="primary"
+          fontFamily="Roboto Mono"
+          className="grocery-btn"
+          sx={{ mx: 1 }}
+          onClick={handleSubmit}
+        >
+          {isEditing ? "edit" : "submit"}
+        </Button>
+      </Box>
+      {list.length > 0 && (
+        <Box justifyContent="center" display="flex" flexDirection="column">
+          <List items={list} removeItem={removeItem} editItem={editItem} />
           <Button
-            variant="contained"
-            color="primary"
-            fontFamily="Roboto Mono"
-            className="grocery-btn"
-            sx={{ mx: 1 }}
-            onClick={handleSubmit}
+            onClick={clearList}
+            className="clear-btn"
+            sx={{
+              color: "hsl(360, 71%, 66%)",
+            }}
           >
-            {isEditing ? "edit" : "submit"}
+            Clear Items
           </Button>
         </Box>
-        {list.length > 0 && (
-          <Box>
-            <List items={list} removeItem={removeItem} editItem={editItem} />
-            <Button onClick={clearList}>Clear Items</Button>
-          </Box>
-        )}
-      </Box>
+      )}
     </Container>
   );
 }

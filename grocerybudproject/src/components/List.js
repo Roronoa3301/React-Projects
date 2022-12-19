@@ -1,6 +1,6 @@
 import React from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, Button } from "@mui/material";
 
 export default function List({ items, removeItem, editItem }) {
   return (
@@ -8,13 +8,39 @@ export default function List({ items, removeItem, editItem }) {
       {items.map((item) => {
         const { id, title } = item;
         return (
-          <Grid container key={id} sx={{ my: 1 }}>
+          <Grid
+            container
+            display="flex"
+            key={id}
+            sx={{ my: 1 }}
+            className="grocery-item"
+          >
             <Grid item xs={10}>
-              <Typography variant="h6">{title}</Typography>
+              <Typography variant="h6" className="title">
+                {title}
+              </Typography>
             </Grid>
             <Grid item xs={2}>
-              <FaEdit onClick={editItem} />
-              <FaTrash onClick={removeItem} />
+              <Box display="flex">
+                <Button
+                  className="edit-btn"
+                  sx={{
+                    color: "hsl(125, 71%, 66%)",
+                  }}
+                  onClick={() => editItem(id)}
+                >
+                  <FaEdit />
+                </Button>
+                <Button
+                  className="delete-btn"
+                  sx={{
+                    color: "hsl(360, 71%, 66%)",
+                  }}
+                  onClick={() => removeItem(id)}
+                >
+                  <FaTrash />
+                </Button>
+              </Box>
             </Grid>
           </Grid>
         );
