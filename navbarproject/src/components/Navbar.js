@@ -26,43 +26,87 @@ export default function Navbar() {
     setShowLinks(!showLinks);
   };
 
-  // useEffect(() => {
-  //     const linksHeight = linksRef.current.getBoundingClientRect().height;
-  //     if (showLinks) {
-  //         linksContainerRef.current.style.height = `${linksHeight}px`;
-  //     } else {
-  //         linksContainerRef.current.style.height = "0px";
-  //     }
-  // }, [showLinks]);
+  useEffect(() => {
+    const linksHeight = linksRef.current.getBoundingClientRect().height;
+    if (showLinks) {
+      linksContainerRef.current.style.height = `${linksHeight}px`;
+    } else {
+      linksContainerRef.current.style.height = "0px";
+    }
+  }, [showLinks]);
 
   return (
-    <AppBar
-      className="nav-center"
-      position="fixed"
-      sx={{
-        backgroundColor: "white",
-      }}
-      elevation={5}
-    >
-      <Container className="nav-header">
-        <Toolbar>
-          <Box component="img" src={logo} className="logo" />
-          <Box className="links-container">
-            <Menu>
-              {links.map((link) => {
-                const { id, url, text } = link;
-                return (
-                  <MenuItem key={id}>
-                    <Link href={url} sx={{ color: "black" }}>
+    <nav>
+      <AppBar
+        className="nav-center"
+        position="fixed"
+        sx={{
+          backgroundColor: "white",
+        }}
+        elevation={1}
+      >
+        <Container className="nav-header">
+          <Toolbar
+            sx={{
+              alignItems: "center",
+            }}
+          >
+            <Box component="img" src={logo} className="logo" />
+            <Box className="links-container" ref={linksContainerRef}>
+              <Box
+                className="links"
+                sx={{
+                  px: 8,
+                }}
+                ref={linksRef}
+              >
+                {links.map((link) => {
+                  const { id, url, text } = link;
+                  return (
+                    <Link key={id} href={url} underline="none">
                       {text}
                     </Link>
-                  </MenuItem>
+                  );
+                })}
+              </Box>
+            </Box>
+            <Box
+              className="social-icons"
+              sx={{
+                ml: 20,
+              }}
+            >
+              {social.map((socialIcon) => {
+                const { id, url, icon } = socialIcon;
+                return (
+                  <Link key={id} href={url} underline="none">
+                    {icon}
+                  </Link>
                 );
               })}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+            </Box>
+            <Button
+              className="nav-toggle"
+              sx={{
+                fontSize: "1.5rem",
+                color: "#49a6e9",
+                background: "transparent",
+                borderColor: "transparent",
+                transition: "all 0.3s linear",
+                cursor: "pointer",
+                // "&:hover": {
+                //   color: "#D5DCE1",
+                //   transform: "rotate(90deg)",
+                // },
+                display: { xs: "block", sm: "none" },
+              }}
+              onClick={toggleLinks}
+            >
+              <FaBars />
+            </Button>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </nav>
   );
 }

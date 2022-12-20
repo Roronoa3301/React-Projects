@@ -39,7 +39,7 @@ nav {
 }
 
 .links a {
-    color: #8d979e;
+    color: #34506a;
     font-size: 1rem;
     text-transform: capitalize;
     letter-spacing: 0.1rem;
@@ -80,4 +80,27 @@ nav {
         height: auto !important;
         display: flex;
     }
+    .links {
+        display: flex;
+        
+    }
+    .links a {
+        padding: 0;
+        margin: 0.5rem 1rem;
+    }
+    .links a:hover {
+        padding: 0;
+        background: transparent;
+      }
+      .social-icons {
+        display: flex;
+      }
+      .social-icons a {
+        margin: 0 0.5rem;
+        color: #49a6e9;
+        transition: all 0.3s linear;
+      }
+      .social-icons a:hover {
+        color: hsl(205, 90%, 76%);
+      }
 }
