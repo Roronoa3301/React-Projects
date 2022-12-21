@@ -65,6 +65,10 @@ nav {
     height: 10rem;
 }
 
+.hamburger {
+    transition: all 0.3s linear;
+}
+
 @media screen and (min-width: 800px) {
     .nav-toggle {
         display: none;

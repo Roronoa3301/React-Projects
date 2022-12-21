@@ -1,33 +1,32 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { links, social } from "../data/data";
 import logo from "../logo.svg";
 import { FaBars } from "react-icons/fa";
-import {
-  Box,
-  Button,
-  Link,
-  AppBar,
-  Toolbar,
-  SwipeableDrawer,
-} from "@mui/material";
+import { Box, Button, Link, AppBar, Toolbar } from "@mui/material";
 
 export default function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
-  const linksContainerRef = useRef(null);
-  const linksRef = useRef(null);
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
   };
 
+  function getWindowSize() {
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth, innerHeight };
+  }
+
   useEffect(() => {
-    const linksHeight = linksRef.current.getBoundingClientRect().height;
-    if (showLinks) {
-      linksContainerRef.current.style.height = `${linksHeight}px`;
-    } else {
-      linksContainerRef.current.style.height = "0px";
+    function handleResize() {
+      const windowSize = getWindowSize();
+      const linksWidth = windowSize.innerWidth;
+      if (linksWidth > 900) {
+        setShowLinks(false);
+      }
     }
-  }, [showLinks]);
+
+    window.addEventListener("resize", handleResize);
+  }, []);
 
   return (
     <nav>
@@ -36,6 +35,7 @@ export default function Navbar() {
         sx={{
           backgroundColor: "white",
           boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)",
+          transition: "all 0.3s linear",
         }}
       >
         <Toolbar
@@ -44,6 +44,7 @@ export default function Navbar() {
             display: "flex",
             justifyContent: "space-between",
             padding: "0.5rem",
+            transition: "all 0.3s linear",
           }}
         >
           {/*The Logo*/}
@@ -71,7 +72,7 @@ export default function Navbar() {
               transition: "all 0.3s linear",
               cursor: "pointer",
               "&:hover": {
-                color: "#D5DCE1",
+                color: "#102A42",
                 transform: "rotate(90deg)",
               },
               alignItems: "end",
@@ -89,7 +90,6 @@ export default function Navbar() {
           </Button>
           {/*The Links*/}
           <Box
-            ref={linksContainerRef}
             sx={{
               display: {
                 xs: "none",
@@ -104,11 +104,31 @@ export default function Navbar() {
               justifyContent: "center",
             }}
           >
-            <Box className="links" ref={linksRef}>
+            <Box>
               {links.map((link) => {
                 const { id, url, text } = link;
                 return (
-                  <Link key={id} href={url} underline="none">
+                  <Link
+                    key={id}
+                    href={url}
+                    underline="none"
+                    sx={{
+                      display: "inline",
+                      justifyContent: "center",
+                      color: "#34506a",
+                      fontSize: "1rem",
+                      textTransform: "capitalize",
+                      letterSpacing: "0.1rem",
+                      padding: "0",
+                      margin: "0.5rem 1rem",
+                      transition: "all 0.3s linear",
+                      "&:hover": {
+                        padding: "0",
+                        background: "transparent",
+                        color: "#49a6e9",
+                      },
+                    }}
+                  >
                     {text}
                   </Link>
                 );
@@ -147,6 +167,43 @@ export default function Navbar() {
             })}
           </Box>
         </Toolbar>
+        {showLinks && (
+          <Box
+            sx={{
+              transition: "all 0.3s linear",
+            }}
+          >
+            <Box>
+              {links.map((link) => {
+                const { id, url, text } = link;
+                return (
+                  <Link
+                    key={id}
+                    href={url}
+                    underline="none"
+                    sx={{
+                      color: "#34506a",
+                      fontSize: "1rem",
+                      textTransform: "capitalize",
+                      letterSpacing: "0.1rem",
+                      display: "block",
+                      padding: "0.5rem 1rem",
+                      transition: "all 0.3s linear",
+                      "&:hover": {
+                        background: "hsl(205, 86%, 81%)",
+                        transition: "all 0.3s linear",
+                        color: "#49a6e9",
+                        pl: "1.5rem",
+                      },
+                    }}
+                  >
+                    {text}
+                  </Link>
+                );
+              })}
+            </Box>
+          </Box>
+        )}
       </AppBar>
     </nav>
   );
