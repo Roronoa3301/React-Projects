@@ -4,17 +4,11 @@ import logo from "../logo.svg";
 import { FaBars } from "react-icons/fa";
 import {
   Box,
-  Container,
   Button,
-  Card,
-  CardContent,
-  Typography,
   Link,
   AppBar,
   Toolbar,
-  IconButton,
-  Menu,
-  MenuItem,
+  SwipeableDrawer,
 } from "@mui/material";
 
 export default function Navbar() {
@@ -38,74 +32,121 @@ export default function Navbar() {
   return (
     <nav>
       <AppBar
-        className="nav-center"
         position="fixed"
         sx={{
           backgroundColor: "white",
+          boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)",
         }}
-        elevation={1}
       >
-        <Container className="nav-header">
-          <Toolbar
+        <Toolbar
+          sx={{
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0.5rem",
+          }}
+        >
+          {/*The Logo*/}
+          <Box
+            component="img"
+            src={logo}
             sx={{
-              alignItems: "center",
+              height: "2.5rem",
+              display: {
+                xs: "block",
+                sm: "block",
+                md: "block",
+                lg: "block",
+                xl: "block",
+              },
+            }}
+          />
+          {/*The Toggle Button*/}
+          <Button
+            sx={{
+              fontSize: "1.5rem",
+              color: "#49a6e9",
+              background: "transparent",
+              borderColor: "transparent",
+              transition: "all 0.3s linear",
+              cursor: "pointer",
+              "&:hover": {
+                color: "#D5DCE1",
+                transform: "rotate(90deg)",
+              },
+              alignItems: "end",
+              display: {
+                xs: "block",
+                sm: "block",
+                md: "none",
+                lg: "none",
+                xl: "none",
+              },
+            }}
+            onClick={toggleLinks}
+          >
+            <FaBars />
+          </Button>
+          {/*The Links*/}
+          <Box
+            ref={linksContainerRef}
+            sx={{
+              display: {
+                xs: "none",
+                sm: "none",
+                md: "flex",
+                lg: "flex",
+                xl: "flex",
+              },
+              overflow: "hidden",
+              transition: "all 0.3s linear",
+              height: "auto !important",
+              justifyContent: "center",
             }}
           >
-            <Box component="img" src={logo} className="logo" />
-            <Box className="links-container" ref={linksContainerRef}>
-              <Box
-                className="links"
-                sx={{
-                  px: 8,
-                }}
-                ref={linksRef}
-              >
-                {links.map((link) => {
-                  const { id, url, text } = link;
-                  return (
-                    <Link key={id} href={url} underline="none">
-                      {text}
-                    </Link>
-                  );
-                })}
-              </Box>
-            </Box>
-            <Box
-              className="social-icons"
-              sx={{
-                ml: 20,
-              }}
-            >
-              {social.map((socialIcon) => {
-                const { id, url, icon } = socialIcon;
+            <Box className="links" ref={linksRef}>
+              {links.map((link) => {
+                const { id, url, text } = link;
                 return (
                   <Link key={id} href={url} underline="none">
-                    {icon}
+                    {text}
                   </Link>
                 );
               })}
             </Box>
-            <Button
-              className="nav-toggle"
-              sx={{
-                fontSize: "1.5rem",
-                color: "#49a6e9",
-                background: "transparent",
-                borderColor: "transparent",
-                transition: "all 0.3s linear",
-                cursor: "pointer",
-                // "&:hover": {
-                //   color: "#D5DCE1",
-                //   transform: "rotate(90deg)",
-                // },
-                display: { xs: "block", sm: "none" },
-              }}
-              onClick={toggleLinks}
-            >
-              <FaBars />
-            </Button>
-          </Toolbar>
-        </Container>
+          </Box>
+          {/*The Social Icons*/}
+          <Box
+            sx={{
+              display: {
+                xs: "none",
+                sm: "none",
+                md: "flex",
+                lg: "flex",
+                xl: "flex",
+              },
+            }}
+          >
+            {social.map((socialIcon) => {
+              const { id, url, icon } = socialIcon;
+              return (
+                <Link
+                  key={id}
+                  href={url}
+                  underline="none"
+                  sx={{
+                    margin: "0 0.5rem",
+                    color: "#49a6e9",
+                    transition: "all 0.3s linear",
+                    "&:hover": { color: "hsl(205, 90%, 76%)" },
+                  }}
+                >
+                  {icon}
+                </Link>
+              );
+            })}
+          </Box>
+        </Toolbar>
       </AppBar>
     </nav>
   );

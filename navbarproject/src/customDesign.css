@@ -69,6 +69,9 @@ nav {
     .nav-toggle {
         display: none;
     }
+    .button-toggle {
+        display: none;
+    }
     .nav-center {
         display: flex;
         align-items: center;
@@ -78,10 +81,12 @@ nav {
     }
     .links-container {
         height: auto !important;
+        justify-content: center;
         display: flex;
     }
     .links {
         display: flex;
+        justify-content: center;
         
     }
     .links a {
