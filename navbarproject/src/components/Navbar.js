@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { links, social } from "../data/data";
 import logo from "../logo.svg";
 import { FaBars } from "react-icons/fa";
-import { Box, Button, Link, AppBar, Toolbar } from "@mui/material";
+import { Box, Button, Link, AppBar, Toolbar, Collapse } from "@mui/material";
 
 export default function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
@@ -37,6 +37,7 @@ export default function Navbar() {
           boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)",
           transition: "all 0.3s linear",
         }}
+        className="hamburger"
       >
         <Toolbar
           sx={{
@@ -167,43 +168,36 @@ export default function Navbar() {
             })}
           </Box>
         </Toolbar>
-        {showLinks && (
-          <Box
-            sx={{
-              transition: "all 0.3s linear",
-            }}
-          >
-            <Box>
-              {links.map((link) => {
-                const { id, url, text } = link;
-                return (
-                  <Link
-                    key={id}
-                    href={url}
-                    underline="none"
-                    sx={{
-                      color: "#34506a",
-                      fontSize: "1rem",
-                      textTransform: "capitalize",
-                      letterSpacing: "0.1rem",
-                      display: "block",
-                      padding: "0.5rem 1rem",
-                      transition: "all 0.3s linear",
-                      "&:hover": {
-                        background: "hsl(205, 86%, 81%)",
-                        transition: "all 0.3s linear",
-                        color: "#49a6e9",
-                        pl: "1.5rem",
-                      },
-                    }}
-                  >
-                    {text}
-                  </Link>
-                );
-              })}
-            </Box>
-          </Box>
-        )}
+        {/*The Links for Mobile View*/}
+        <Collapse orientation="vertical" in={showLinks}>
+          {links.map((link) => {
+            const { id, url, text } = link;
+            return (
+              <Link
+                key={id}
+                href={url}
+                underline="none"
+                sx={{
+                  color: "#34506a",
+                  fontSize: "1rem",
+                  textTransform: "capitalize",
+                  letterSpacing: "0.1rem",
+                  display: "block",
+                  padding: "0.5rem 1rem",
+                  transition: "all 0.3s linear",
+                  "&:hover": {
+                    background: "hsl(205, 86%, 81%)",
+                    transition: "all 0.3s linear",
+                    color: "#49a6e9",
+                    pl: "1.5rem",
+                  },
+                }}
+              >
+                {text}
+              </Link>
+            );
+          })}
+        </Collapse>
       </AppBar>
     </nav>
   );
