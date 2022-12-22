@@ -7,32 +7,27 @@ export default function ModalBox() {
   const { closeModal } = useGlobalContext();
   return (
     <Box>
-      <Box
+      <Button
         sx={{
-          display: "flex",
-          justifyContent: "flex-end",
+          fontSize: "1.75rem",
+          background: "transparent",
+          borderColor: "transparent",
+          position: "fixed",
+          top: "1rem",
+          right: "1rem",
+          color: "#bb2525",
+          cursor: "pointer",
+          transition: "all 0.3s linear",
+          "&:hover": {
+            color: "#ec7570",
+          },
         }}
+        onClick={closeModal}
       >
-        <Button
-          sx={{
-            fontSize: "1.75rem",
-            background: "transparent",
-            borderColor: "transparent",
-            color: "#34506a",
-            cursor: "pointer",
-            transition: "all 0.3s linear",
-            "&:hover": {
-              color: "#49a6e9",
-            },
-          }}
-          onClick={closeModal}
-        >
-          <FaTimes />
-        </Button>
-      </Box>
-      <Box>
-        <Typography variant="h4">Modal Content</Typography>
-      </Box>
+        <FaTimes />
+      </Button>
+
+      <Typography variant="h4">Modal Content</Typography>
     </Box>
   );
 }

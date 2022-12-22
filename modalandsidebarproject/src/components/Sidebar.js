@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Box, Link, Button } from "@mui/material";
+import { Container, Box, Link, Button, AppBar, Toolbar } from "@mui/material";
 import { links, social } from "../componentData/data";
 import Logo from "../logo.svg";
 import { FaTimes } from "react-icons/fa";
@@ -9,40 +9,70 @@ export default function Sidebar() {
   const { closeSidebar } = useGlobalContext();
 
   return (
-    <Container maxWidth="sm">
-      <Box
+    <Container
+      maxWidth="xs"
+      sx={{
+        position: "fixed",
+        width: "100%",
+        top: 0,
+        left: 0,
+
+        transition: "all 0.3s linear",
+        transform: "translate(0)",
+        background: "white",
+        height: "100%",
+      }}
+    >
+      <AppBar
+        position="fixed"
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+          backgroundColor: "white",
+          boxShadow: "0 0px 0px rgba(0, 0, 0, 0.0)",
+          transition: "all 0.3s linear",
         }}
       >
-        <Box
-          component="img"
-          src={Logo}
+        <Toolbar
           sx={{
-            height: "2.5rem",
-            display: "block",
-          }}
-        />
-        <Button
-          sx={{
-            fontSize: "1.75rem",
-            background: "transparent",
-            borderColor: "transparent",
-            color: "#34506a",
-            cursor: "pointer",
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0.5rem",
             transition: "all 0.3s linear",
-            "&:hover": {
-              color: "#49a6e9",
-            },
           }}
-          onClick={closeSidebar}
         >
-          <FaTimes />
-        </Button>
-      </Box>
-      <Box>
+          <Box
+            component="img"
+            src={Logo}
+            sx={{
+              height: "2.5rem",
+              display: "flex",
+              justifyContent: "start",
+            }}
+          />
+          <Button
+            sx={{
+              fontSize: "1.75rem",
+              background: "transparent",
+              borderColor: "transparent",
+              color: "#bb2525",
+              cursor: "pointer",
+              transition: "all 0.3s linear",
+              "&:hover": {
+                color: "#ec7570",
+              },
+            }}
+            onClick={closeSidebar}
+          >
+            <FaTimes />
+          </Button>
+        </Toolbar>
+      </AppBar>
+
+      <Box
+        sx={{
+          mt: "5rem",
+        }}
+      >
         {links.map((link) => {
           const { id, url, text, icon } = link;
           return (
@@ -51,19 +81,18 @@ export default function Sidebar() {
               href={url}
               underline="none"
               sx={{
-                display: "inline",
-                justifyContent: "center",
-                color: "#34506a",
-                fontSize: "1rem",
+                display: "block",
+                alignItems: "center",
+                color: "#415569",
+                fontSize: "1.5rem",
                 textTransform: "capitalize",
                 letterSpacing: "0.1rem",
-                padding: "0",
-                margin: "0.5rem 1rem",
+                py: "1rem",
+                left: "0",
                 transition: "all 0.3s linear",
                 "&:hover": {
-                  padding: "0",
-                  background: "transparent",
-                  color: "#49a6e9",
+                  background: "#F1F5F8",
+                  color: "#243A52",
                 },
               }}
             >
@@ -73,7 +102,15 @@ export default function Sidebar() {
           );
         })}
       </Box>
-      <Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          mt: "17rem",
+        }}
+      >
         {social.map((socialIcon) => {
           const { id, url, icon } = socialIcon;
           return (
@@ -84,6 +121,7 @@ export default function Sidebar() {
               sx={{
                 margin: "0 0.5rem",
                 color: "#49a6e9",
+                fontSize: "1.5rem",
                 transition: "all 0.3s linear",
                 "&:hover": { color: "#8BCBF9" },
               }}

@@ -19,14 +19,11 @@ const bounce = keyframes`
 `;
 
 export default function Home() {
-  const { openSidebar, openModal, isSidebarOpen, isModalOpen } =
+  const { openSidebar, openModal, isSidebarOpen, isModalOpen, modalDisplay } =
     useGlobalContext();
 
   return (
     <Container maxWidth="xl" display="flex">
-      <Collapse in={isSidebarOpen} orientation="horizontal">
-        <Sidebar />
-      </Collapse>
       {/*The Sidebar Button*/}
       <Box
         sx={{
@@ -36,26 +33,38 @@ export default function Home() {
           mt: "1.5rem",
         }}
       >
-        <Button
-          sx={{
-            fontSize: "2.0rem",
-            color: "#49a6e9",
-            background: "transparent",
-            borderColor: "transparent",
-            cursor: "pointer",
-            display: {
-              xs: "block",
-              sm: "block",
-              md: "block",
-              lg: "block",
-              xl: "block",
-            },
-            animation: `${bounce} 2s ease-in-out infinite`,
-          }}
-          onClick={openSidebar}
-        >
-          <FaBars />
-        </Button>
+        {isSidebarOpen ? (
+          <Collapse
+            in={isSidebarOpen}
+            orientation="horizontal"
+            sx={{
+              p: 0,
+            }}
+          >
+            <Sidebar />
+          </Collapse>
+        ) : (
+          <Button
+            sx={{
+              fontSize: "2.0rem",
+              color: "#49a6e9",
+              background: "transparent",
+              borderColor: "transparent",
+              cursor: "pointer",
+              display: {
+                xs: "block",
+                sm: "block",
+                md: "block",
+                lg: "block",
+                xl: "block",
+              },
+              animation: `${bounce} 2s ease-in-out infinite`,
+            }}
+            onClick={openSidebar}
+          >
+            <FaBars />
+          </Button>
+        )}
       </Box>
       <Box
         sx={{
@@ -65,7 +74,27 @@ export default function Home() {
         }}
       >
         {isModalOpen ? (
-          <ModalBox />
+          <Box
+            sx={{
+              top: 0,
+              left: 0,
+              width: "40vw",
+              height: "30vh",
+              background: "white",
+              display: "flex",
+              placeItems: "center",
+              justifyContent: "center",
+              alignItems: "center",
+              transition: "all 0.3s linear",
+              visibility: "visible",
+              zIndex: 10,
+              borderRadius: "0.5rem",
+            }}
+          >
+            <ModalBox />
+          </Box>
+        ) : modalDisplay && isSidebarOpen ? (
+          <></>
         ) : (
           <Button
             sx={{
