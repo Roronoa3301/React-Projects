@@ -1,9 +1,10 @@
 import React from "react";
-import { Container, Box, Button } from "@mui/material";
+import { Container, Box, Button, Collapse } from "@mui/material";
 import { FaBars } from "react-icons/fa";
 import Sidebar from "./Sidebar";
 import ModalBox from "./ModalBox";
 import { keyframes } from "@mui/system";
+import { useGlobalContext } from "../Context/ContextData";
 
 const bounce = keyframes`
 0% {
@@ -18,8 +19,14 @@ const bounce = keyframes`
 `;
 
 export default function Home() {
+  const { openSidebar, openModal, isSidebarOpen, isModalOpen } =
+    useGlobalContext();
+
   return (
     <Container maxWidth="xl" display="flex">
+      <Collapse in={isSidebarOpen} orientation="horizontal">
+        <Sidebar />
+      </Collapse>
       {/*The Sidebar Button*/}
       <Box
         sx={{
@@ -45,6 +52,7 @@ export default function Home() {
             },
             animation: `${bounce} 2s ease-in-out infinite`,
           }}
+          onClick={openSidebar}
         >
           <FaBars />
         </Button>
@@ -56,29 +64,34 @@ export default function Home() {
           alignItems: "center",
         }}
       >
-        <Button
-          sx={{
-            textTransform: "uppercase",
-            background: "black",
-            color: "white",
-            padding: "0.375rem 0.75rem",
-            letterSpacing: "0.1rem",
-            display: "inline-block",
-            transition: "all 0.3s linear",
-            fontSize: "0.875rem",
-            border: "2px solid black",
-            cursor: "pointer",
-            boxShadow: "0 1px 3px rgba(0, 0, 0, 0.2)",
-            borderadius: "0.25rem",
-            my: "15rem",
-            "&:hover": {
-              color: "black",
-              background: "transparent",
-            },
-          }}
-        >
-          Show Modal
-        </Button>
+        {isModalOpen ? (
+          <ModalBox />
+        ) : (
+          <Button
+            sx={{
+              textTransform: "uppercase",
+              background: "black",
+              color: "white",
+              padding: "0.375rem 0.75rem",
+              letterSpacing: "0.1rem",
+              display: "inline-block",
+              transition: "all 0.3s linear",
+              fontSize: "0.875rem",
+              border: "2px solid black",
+              cursor: "pointer",
+              boxShadow: "0 1px 3px rgba(0, 0, 0, 0.2)",
+              borderadius: "0.25rem",
+              my: "15rem",
+              "&:hover": {
+                color: "black",
+                background: "transparent",
+              },
+            }}
+            onClick={openModal}
+          >
+            Show Modal
+          </Button>
+        )}
       </Box>
     </Container>
   );
