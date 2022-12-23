@@ -32,9 +32,12 @@ const AppProvider = ({ children }) => {
     function handleResize() {
       const windowSize = getWindowSize();
       const modalWidth = windowSize.innerWidth;
-      console.log(modalWidth);
+
       if (modalWidth < 675) {
         setModalDisplay(true);
+      }
+      if (modalWidth > 675) {
+        setModalDisplay(false);
       }
     }
 

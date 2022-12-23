@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Box, Button, Collapse } from "@mui/material";
+import { Container, Box, Button } from "@mui/material";
 import { FaBars } from "react-icons/fa";
 import Sidebar from "./Sidebar";
 import ModalBox from "./ModalBox";
@@ -31,18 +31,11 @@ export default function Home() {
           justifyContent: "flex-start",
           alignItems: "center",
           mt: "1.5rem",
+          transition: "all 0.3s linear",
         }}
       >
         {isSidebarOpen ? (
-          <Collapse
-            in={isSidebarOpen}
-            orientation="horizontal"
-            sx={{
-              p: 0,
-            }}
-          >
-            <Sidebar />
-          </Collapse>
+          <Sidebar />
         ) : (
           <Button
             sx={{
@@ -74,25 +67,7 @@ export default function Home() {
         }}
       >
         {isModalOpen ? (
-          <Box
-            sx={{
-              top: 0,
-              left: 0,
-              width: "40vw",
-              height: "30vh",
-              background: "white",
-              display: "flex",
-              placeItems: "center",
-              justifyContent: "center",
-              alignItems: "center",
-              transition: "all 0.3s linear",
-              visibility: "visible",
-              zIndex: 10,
-              borderRadius: "0.5rem",
-            }}
-          >
-            <ModalBox />
-          </Box>
+          <ModalBox />
         ) : modalDisplay && isSidebarOpen ? (
           <></>
         ) : (
