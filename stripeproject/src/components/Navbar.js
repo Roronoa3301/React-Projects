@@ -2,8 +2,10 @@ import React from "react";
 import { Box, AppBar, Toolbar, Button } from "@mui/material";
 import { FaBars } from "react-icons/fa";
 import Logo from "../assets/logo.svg";
+import { useGlobalContext } from "../Context/Context";
 
 export default function Navbar() {
+  const { openSidebar, openSubmenu, closeSubmenu } = useGlobalContext();
   return (
     <AppBar
       sx={{
@@ -34,20 +36,82 @@ export default function Navbar() {
             },
           }}
         />
+        <Box
+          sx={{
+            display: {
+              xs: "none",
+              sm: "none",
+              md: "block",
+              lg: "block",
+              xl: "block",
+            },
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Button
+            sx={{
+              fontSize: "1.1rem",
+              fontFamily: "Roboto Mono, monospace",
+              color: "white",
+              background: "transparent",
+              borderColor: "transparent",
+              letterSpacing: "1px",
+              width: "10rem",
+              transition: "all 0.3s linear",
+              cursor: "pointer",
+              height: "100%",
+            }}
+          >
+            Products
+          </Button>
+          <Button
+            sx={{
+              fontSize: "1.1rem",
+              fontFamily: "Roboto Mono, monospace",
+              color: "white",
+              background: "transparent",
+              borderColor: "transparent",
+              letterSpacing: "1px",
+              width: "10rem",
+              transition: "all 0.3s linear",
+              cursor: "pointer",
+              height: "100%",
+            }}
+          >
+            Developers
+          </Button>
+          <Button
+            sx={{
+              fontSize: "1.1rem",
+              fontFamily: "Roboto Mono, monospace",
+              color: "white",
+              background: "transparent",
+              borderColor: "transparent",
+              letterSpacing: "1px",
+              width: "10rem",
+              transition: "all 0.3s linear",
+              cursor: "pointer",
+              height: "100%",
+            }}
+          >
+            Company
+          </Button>
+        </Box>
 
         <Button
           sx={{
-            fontSize: "1.5rem",
-            color: "#49a6e9",
-            background: "transparent",
+            fontSize: "1rem",
+            padding: "0.25rem 0.75rem",
+            borderRadius: "0.25rem",
+            color: "white",
+            background: "black",
             borderColor: "transparent",
             transition: "all 0.3s linear",
             cursor: "pointer",
             "&:hover": {
-              color: "#102A42",
-              transform: "rotate(90deg)",
+              background: "#617D98",
             },
-            alignItems: "end",
             display: {
               xs: "block",
               sm: "block",
@@ -58,6 +122,24 @@ export default function Navbar() {
           }}
         >
           <FaBars />
+        </Button>
+        <Button
+          sx={{
+            fontSize: "1rem",
+            padding: "0.25rem 0.75rem",
+            borderRadius: "0.25rem",
+            color: "white",
+            background: "black",
+            borderColor: "transparent",
+            transition: "all 0.3s linear",
+            cursor: "pointer",
+            "&:hover": {
+              background: "#617D98",
+            },
+            justifyContent: "start",
+          }}
+        >
+          Start now
         </Button>
       </Toolbar>
     </AppBar>

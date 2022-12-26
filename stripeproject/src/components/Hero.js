@@ -11,6 +11,7 @@ import {
 import HeroImage from "../assets/hero.svg";
 
 import Navbar from "./Navbar";
+import MainContent from "./MainContent";
 
 export default function Hero() {
   return (
@@ -22,7 +23,21 @@ export default function Hero() {
         fontFamily: "Roboto Mono, monospace",
       }}
     >
-      <Navbar />
+      <Box
+        sx={{
+          pb: "1rem",
+          background: "transparent",
+        }}
+      >
+        <Navbar />
+      </Box>
+      <Box
+        sx={{
+          background: "transparent",
+        }}
+      >
+        <MainContent />
+      </Box>
     </Box>
   );
 }

@@ -53,7 +53,7 @@ export default function Navbar() {
             component="img"
             src={logo}
             sx={{
-              height: "2.5rem",
+              height: "4.0rem",
               display: {
                 xs: "block",
                 sm: "block",
