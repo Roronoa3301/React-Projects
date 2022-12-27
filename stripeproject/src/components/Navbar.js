@@ -4,22 +4,24 @@ import {
   AppBar,
   Toolbar,
   Button,
-  Tooltip,
-  tooltipClasses,
-  styled,
+  Drawer,
+  Modal,
+  Fade,
 } from "@mui/material";
 import { FaBars } from "react-icons/fa";
 import Logo from "../assets/logo.svg";
 import { useGlobalContext } from "../Context/Context";
 import Submenu from "./Submenu";
-import sublinks from "../data/stripeData";
+import { products, developers, company } from "../data/stripeData";
 import ItemCard from "./ItemCard";
+import SidebarContent from "./SidebarContent";
 
 export default function Navbar() {
-  const { openSidebar, openSubmenu, closeSubmenu } = useGlobalContext();
-  const products = sublinks.products;
-  const developers = sublinks.developers;
-  const company = sublinks.company;
+  const { openSidebar, openSubmenu, closeSubmenu, closeSidebar } =
+    useGlobalContext();
+  const productsData = products;
+  const developersData = developers;
+  const companyData = company;
 
   const subMenuName = (e) => {
     const pageName = e.target.textContent;
@@ -30,21 +32,11 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    console.log("sublinks", sublinks);
-    console.log("products", products);
+    console.log(
+      "products",
+      products.links.map((link) => link.label)
+    );
   }, []);
-
-  const ModalTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} classes={{ popper: className }} />
-  ))(({ theme }) => ({
-    [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: "#f5f5f9",
-      color: "rgba(0, 0, 0, 0.87)",
-      maxWidth: 220,
-      fontSize: theme.typography.pxToRem(12),
-      border: "1px solid #dadde9",
-    },
-  }));
 
   return (
     <AppBar
@@ -89,99 +81,60 @@ export default function Navbar() {
             alignItems: "center",
           }}
         >
-          {/* {products.map((link, index) => {
-            <Submenu
-              key={index}
-              content={
-                <ItemCard label={link.label} icon={link.icon} url={link.url} />
-              }
+          <Submenu content={<ItemCard data={products} title="Products" />}>
+            <Button
+              sx={{
+                fontSize: "1.1rem",
+                fontFamily: "Roboto Mono, monospace",
+                color: "white",
+                background: "transparent",
+                borderColor: "transparent",
+                letterSpacing: "1px",
+                width: "10rem",
+                transition: "all 0.3s linear",
+                cursor: "pointer",
+                height: "100%",
+              }}
             >
-              <Button
-                sx={{
-                  fontSize: "1.1rem",
-                  fontFamily: "Roboto Mono, monospace",
-                  color: "white",
-                  background: "transparent",
-                  borderColor: "transparent",
-                  letterSpacing: "1px",
-                  width: "10rem",
-                  transition: "all 0.3s linear",
-                  cursor: "pointer",
-                  height: "100%",
-                }}
-              >
-                {link.pageHeader}
-              </Button>
-            </Submenu>;
-          })} */}
-          {/* {sublinks.map((link) => {
-            link.links.map((newLink, index) => {
-              console.log("links", newLink);
-              console.log("label", newLink.label);
-              console.log("page", newLink.pageHeader);
-
-              <Submenu
-                key={index}
-                content={
-                  <ItemCard
-                    label={newLink.label}
-                    icon={newLink.icon}
-                    url={newLink.url}
-                  />
-                }
-              >
-                <Button
-                  sx={{
-                    fontSize: "1.1rem",
-                    fontFamily: "Roboto Mono, monospace",
-                    color: "white",
-                    background: "transparent",
-                    borderColor: "transparent",
-                    letterSpacing: "1px",
-                    width: "10rem",
-                    transition: "all 0.3s linear",
-                    cursor: "pointer",
-                    height: "100%",
-                  }}
-                >
-                  {newLink.pageHeader}
-                </Button>
-              </Submenu>;
-            });
-          })} */}
-
-          {/* <Button
-            sx={{
-              fontSize: "1.1rem",
-              fontFamily: "Roboto Mono, monospace",
-              color: "white",
-              background: "transparent",
-              borderColor: "transparent",
-              letterSpacing: "1px",
-              width: "10rem",
-              transition: "all 0.3s linear",
-              cursor: "pointer",
-              height: "100%",
-            }}
-          >
-            Developers
-          </Button>
-          <Button
-            sx={{
-              fontSize: "1.1rem",
-              fontFamily: "Roboto Mono, monospace",
-              color: "white",
-              background: "transparent",
-              borderColor: "transparent",
-              letterSpacing: "1px",
-              width: "10rem",
-              transition: "all 0.3s linear",
-              cursor: "pointer",
-              height: "100%",
-            }}
-          >
-            Company
-          </Button> */}
+              Products
+            </Button>
+          </Submenu>
+          <Submenu content={<ItemCard data={developers} title="Developer" />}>
+            <Button
+              sx={{
+                fontSize: "1.1rem",
+                fontFamily: "Roboto Mono, monospace",
+                color: "white",
+                background: "transparent",
+                borderColor: "transparent",
+                letterSpacing: "1px",
+                width: "10rem",
+                transition: "all 0.3s linear",
+                cursor: "pointer",
+                height: "100%",
+              }}
+            >
+              Developer
+            </Button>
+          </Submenu>
+          <Submenu content={<ItemCard data={company} title="Company" />}>
+            <Button
+              sx={{
+                fontSize: "1.1rem",
+                fontFamily: "Roboto Mono, monospace",
+                color: "white",
+                background: "transparent",
+                borderColor: "transparent",
+                letterSpacing: "1px",
+                width: "10rem",
+                transition: "all 0.3s linear",
+                cursor: "pointer",
+                height: "100%",
+              }}
+            >
+              Company
+            </Button>
+          </Submenu>
         </Box>
 
         <Button
@@ -205,9 +158,11 @@ export default function Navbar() {
               xl: "none",
             },
           }}
+          onClick={openSidebar}
         >
           <FaBars />
         </Button>
+
         <Button
           sx={{
             fontSize: "1rem",
@@ -234,6 +189,41 @@ export default function Navbar() {
           Start now
         </Button>
       </Toolbar>
+      {/* <Modal
+        open={openSidebar}
+        onClose={closeSidebar}
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        closeAfterTransition
+      >
+        <Fade in={openSidebar}>
+          <SidebarContent
+            product={products}
+            developer={developers}
+            company={company}
+          />
+        </Fade>
+      </Modal> */}
+      {/* <Drawer
+        sx={{
+          width: "100%",
+          height: "100%",
+          overflow: "hidden",
+          flexShrink: 0,
+          // "& .MuiDrawer-paper": {
+          //   width: drawerWidth,
+          //   boxSizing: "border-box",
+          // },
+        }}
+        variant="persistent"
+        anchor="left"
+        open={openSidebar}
+      >
+        <SidebarContent
+          product={products}
+          developer={developers}
+          company={company}
+        />
+      </Drawer> */}
     </AppBar>
   );
 }

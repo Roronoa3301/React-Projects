@@ -8,12 +8,15 @@ const Submenu = ({ children, content }) => {
     [`& .${tooltipClasses.tooltip}`]: {
       backgroundColor: "#f5f5f9",
       color: "rgba(0, 0, 0, 0.87)",
-      maxWidth: 220,
+      maxWidth: "600px",
       fontSize: theme.typography.pxToRem(12),
-      border: "1px solid #dadde9",
     },
   }));
-  return <SubTooltip title={content}>{children}</SubTooltip>;
+  return (
+    <SubTooltip title={<React.Fragment>{content}</React.Fragment>} arrow>
+      {children}
+    </SubTooltip>
+  );
 };
 
 export default Submenu;

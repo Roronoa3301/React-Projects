@@ -14,7 +14,7 @@ export default function MainContent() {
         container
         columnSpacing={5}
         sx={{
-          pb: "2rem",
+          pl: "10rem",
         }}
       >
         <Grid
@@ -26,7 +26,8 @@ export default function MainContent() {
           xl={8}
           sx={{
             pl: "15rem",
-            pt: "5rem",
+            pt: "10rem",
+            ml: "auto",
           }}
         >
           <Typography
@@ -71,7 +72,18 @@ export default function MainContent() {
             Start now
           </Button>
         </Grid>
-        <Grid item xs="none" sm="none" md={4} lg={4} xl={4}>
+        <Grid
+          item
+          xs="none"
+          sm="none"
+          md={4}
+          lg={4}
+          xl={4}
+          sx={{
+            pt: "2rem",
+            pl: "25rem",
+          }}
+        >
           <Box component="img" src={PhoneAD} />
         </Grid>
       </Grid>
