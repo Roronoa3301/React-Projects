@@ -26,7 +26,6 @@ export default function MainContent() {
           xl={8}
           sx={{
             pl: "15rem",
-
             pt: "5rem",
           }}
         >

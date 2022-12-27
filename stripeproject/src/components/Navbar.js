@@ -1,11 +1,51 @@
-import React from "react";
-import { Box, AppBar, Toolbar, Button } from "@mui/material";
+import React, { useEffect } from "react";
+import {
+  Box,
+  AppBar,
+  Toolbar,
+  Button,
+  Tooltip,
+  tooltipClasses,
+  styled,
+} from "@mui/material";
 import { FaBars } from "react-icons/fa";
 import Logo from "../assets/logo.svg";
 import { useGlobalContext } from "../Context/Context";
+import Submenu from "./Submenu";
+import sublinks from "../data/stripeData";
+import ItemCard from "./ItemCard";
 
 export default function Navbar() {
   const { openSidebar, openSubmenu, closeSubmenu } = useGlobalContext();
+  const products = sublinks.products;
+  const developers = sublinks.developers;
+  const company = sublinks.company;
+
+  const subMenuName = (e) => {
+    const pageName = e.target.textContent;
+  };
+
+  const handleSubmenu = (e) => {
+    closeSubmenu();
+  };
+
+  useEffect(() => {
+    console.log("sublinks", sublinks);
+    console.log("products", products);
+  }, []);
+
+  const ModalTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: "#f5f5f9",
+      color: "rgba(0, 0, 0, 0.87)",
+      maxWidth: 220,
+      fontSize: theme.typography.pxToRem(12),
+      border: "1px solid #dadde9",
+    },
+  }));
+
   return (
     <AppBar
       sx={{
@@ -49,23 +89,68 @@ export default function Navbar() {
             alignItems: "center",
           }}
         >
-          <Button
-            sx={{
-              fontSize: "1.1rem",
-              fontFamily: "Roboto Mono, monospace",
-              color: "white",
-              background: "transparent",
-              borderColor: "transparent",
-              letterSpacing: "1px",
-              width: "10rem",
-              transition: "all 0.3s linear",
-              cursor: "pointer",
-              height: "100%",
-            }}
-          >
-            Products
-          </Button>
-          <Button
+          {/* {products.map((link, index) => {
+            <Submenu
+              key={index}
+              content={
+                <ItemCard label={link.label} icon={link.icon} url={link.url} />
+              }
+            >
+              <Button
+                sx={{
+                  fontSize: "1.1rem",
+                  fontFamily: "Roboto Mono, monospace",
+                  color: "white",
+                  background: "transparent",
+                  borderColor: "transparent",
+                  letterSpacing: "1px",
+                  width: "10rem",
+                  transition: "all 0.3s linear",
+                  cursor: "pointer",
+                  height: "100%",
+                }}
+              >
+                {link.pageHeader}
+              </Button>
+            </Submenu>;
+          })} */}
+          {/* {sublinks.map((link) => {
+            link.links.map((newLink, index) => {
+              console.log("links", newLink);
+              console.log("label", newLink.label);
+              console.log("page", newLink.pageHeader);
+
+              <Submenu
+                key={index}
+                content={
+                  <ItemCard
+                    label={newLink.label}
+                    icon={newLink.icon}
+                    url={newLink.url}
+                  />
+                }
+              >
+                <Button
+                  sx={{
+                    fontSize: "1.1rem",
+                    fontFamily: "Roboto Mono, monospace",
+                    color: "white",
+                    background: "transparent",
+                    borderColor: "transparent",
+                    letterSpacing: "1px",
+                    width: "10rem",
+                    transition: "all 0.3s linear",
+                    cursor: "pointer",
+                    height: "100%",
+                  }}
+                >
+                  {newLink.pageHeader}
+                </Button>
+              </Submenu>;
+            });
+          })} */}
+
+          {/* <Button
             sx={{
               fontSize: "1.1rem",
               fontFamily: "Roboto Mono, monospace",
@@ -96,7 +181,7 @@ export default function Navbar() {
             }}
           >
             Company
-          </Button>
+          </Button> */}
         </Box>
 
         <Button
