@@ -4,9 +4,9 @@ import {
   AppBar,
   Toolbar,
   Button,
-  Drawer,
-  Modal,
-  Fade,
+  //   Drawer,
+  //   Modal,
+  //   Fade,
 } from "@mui/material";
 import { FaBars } from "react-icons/fa";
 import Logo from "../assets/logo.svg";
@@ -14,22 +14,21 @@ import { useGlobalContext } from "../Context/Context";
 import Submenu from "./Submenu";
 import { products, developers, company } from "../data/stripeData";
 import ItemCard from "./ItemCard";
-import SidebarContent from "./SidebarContent";
+// import SidebarContent from "./SidebarContent";
 
 export default function Navbar() {
-  const { openSidebar, openSubmenu, closeSubmenu, closeSidebar } =
-    useGlobalContext();
-  const productsData = products;
-  const developersData = developers;
-  const companyData = company;
+  const { openSidebar } = useGlobalContext();
+  //   const productsData = products;
+  //   const developersData = developers;
+  //   const companyData = company;
 
-  const subMenuName = (e) => {
-    const pageName = e.target.textContent;
-  };
+  //   const subMenuName = (e) => {
+  //     const pageName = e.target.textContent;
+  //   };
 
-  const handleSubmenu = (e) => {
-    closeSubmenu();
-  };
+  //   const handleSubmenu = (e) => {
+  //     closeSubmenu();
+  //   };
 
   useEffect(() => {
     console.log(
