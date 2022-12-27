@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Roboto+Mono&display=swap");
 
 body {
-    background: url(./assets/hero.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: #f1f5f8;
     font-family: "Roboto Mono", monospace;
+    padding: 0;
+    margin: 0;
 }

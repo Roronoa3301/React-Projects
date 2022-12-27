@@ -21,6 +21,10 @@ export default function Hero() {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         fontFamily: "Roboto Mono, monospace",
+        display: "flex",
+        padding: "0",
+        margin: "0",
+        height: "100%",
       }}
     >
       <Box

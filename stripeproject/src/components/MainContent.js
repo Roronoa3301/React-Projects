@@ -10,7 +10,13 @@ export default function MainContent() {
         alignItems: "center",
       }}
     >
-      <Grid container columnSpacing={5}>
+      <Grid
+        container
+        columnSpacing={5}
+        sx={{
+          pb: "2rem",
+        }}
+      >
         <Grid
           item
           xs={12}
@@ -19,17 +25,18 @@ export default function MainContent() {
           lg={8}
           xl={8}
           sx={{
-            pt: "10rem",
-            pl: "5rem",
+            pl: "15rem",
+
+            pt: "5rem",
           }}
         >
           <Typography
             variant="h1"
             sx={{
-              fontSize: "3.5rem",
-              fontWeight: "bold",
+              fontSize: "4.5rem",
+              fontWeight: "700",
               color: "#102a42",
-              letterSpacing: "1px",
+              padding: "1rem",
               fontFamily: "Roboto Mono, monospace",
             }}
           >

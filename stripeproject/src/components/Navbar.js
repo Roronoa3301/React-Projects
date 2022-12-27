@@ -137,6 +137,13 @@ export default function Navbar() {
               background: "#617D98",
             },
             justifyContent: "start",
+            display: {
+              xs: "none",
+              sm: "none",
+              md: "block",
+              lg: "block",
+              xl: "block",
+            },
           }}
         >
           Start now
