@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Box,
-  Popover,
-  AppBar,
-  Toolbar,
-  Button,
-} from "@mui/material";
+import { Box } from "@mui/material";
 
 import HeroImage from "../assets/hero.svg";
 
