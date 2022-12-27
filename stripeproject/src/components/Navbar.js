@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Box,
   AppBar,
@@ -30,12 +30,12 @@ export default function Navbar() {
   //     closeSubmenu();
   //   };
 
-  useEffect(() => {
-    console.log(
-      "products",
-      products.links.map((link) => link.label)
-    );
-  }, []);
+  //   useEffect(() => {
+  //     console.log(
+  //       "products",
+  //       products.links.map((link) => link.label)
+  //     );
+  //   }, []);
 
   return (
     <AppBar

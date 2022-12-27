@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Card, CardContent, Link, Icon, Box, Typography } from "@mui/material";
 
 const ItemCard = ({ data, title }) => {
-  useEffect(() => {
-    console.log(
-      "Label",
-      data.links.map((link) => link.label)
-    );
-  }, []);
+  //   useEffect(() => {
+  //     console.log(
+  //       "Label",
+  //       data.links.map((link) => link.label)
+  //     );
+  //   }, []);
   return (
     <Card
       sx={{
