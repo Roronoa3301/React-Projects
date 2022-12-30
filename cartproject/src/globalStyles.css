@@ -2,3 +2,8 @@ body {
     background: #f1f5f8;
   font-family: "Roboto Mono", monospace;
 }
+
+.badge {
+  font-size: "1.2rem";
+  background-color: #85c6f4;
+}
