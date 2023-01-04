@@ -2,7 +2,7 @@ import React from "react";
 import Cocktail from "./Cocktail";
 import Loading from "./Loading";
 import { useGlobalContext } from "../services/Context";
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
 const CocktailList = () => {
   const { cocktails, loading } = useGlobalContext();
@@ -14,10 +14,11 @@ const CocktailList = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        my: 30,
+        my: 15,
       }}
     >
       <Typography
+        variant="h4"
         sx={{
           fontFamily: "Roboto Mono, monospace",
         }}
@@ -32,6 +33,7 @@ const CocktailList = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        my: 15,
       }}
     >
       <Typography
@@ -43,9 +45,15 @@ const CocktailList = () => {
       >
         Cocktails
       </Typography>
-      {cocktails.map((cocktail) => {
-        return <Cocktail key={cocktail.id} {...cocktail} />;
-      })}
+      <Grid container>
+        {cocktails.map((cocktail) => {
+          return (
+            <Grid item xs={12} sm={6} lg={4} xl={4}>
+              <Cocktail key={cocktail.id} {...cocktail} />
+            </Grid>
+          );
+        })}
+      </Grid>
     </Box>
   );
 };
