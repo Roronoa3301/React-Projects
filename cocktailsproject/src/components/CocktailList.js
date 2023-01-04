@@ -33,7 +33,7 @@ const CocktailList = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        my: 15,
+        my: 10,
       }}
     >
       <Typography
@@ -41,6 +41,7 @@ const CocktailList = () => {
         sx={{
           fontFamily: "Roboto Mono, monospace",
           fontSize: "2.2rem",
+          fontWeight: "bold",
         }}
       >
         Cocktails
@@ -48,7 +49,7 @@ const CocktailList = () => {
       <Grid container>
         {cocktails.map((cocktail) => {
           return (
-            <Grid item xs={12} sm={6} lg={4} xl={4}>
+            <Grid item xs={12} sm={6} lg={4} xl={4} key={cocktail.id}>
               <Cocktail key={cocktail.id} {...cocktail} />
             </Grid>
           );

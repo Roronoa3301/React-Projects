@@ -10,7 +10,6 @@ const Navbar = () => {
         backgroundColor: "#fff",
         p: 1,
         px: { xs: 1, sm: 10, md: 20, lg: 20 },
-        margin: "0 auto",
         elevation: 5,
         position: "static",
       }}
@@ -22,6 +21,7 @@ const Navbar = () => {
           alignItems: "center",
           px: 5,
         }}
+        disableGutters
       >
         {/*The Logo*/}
         <Link to="/">
@@ -54,7 +54,7 @@ const Navbar = () => {
               sx={{
                 fontFamily: "Roboto Mono, monospace",
                 fontSize: "1.2rem",
-                px: { xs: 0.2, sm: 2, md: 2, lg: 2, xl: 2 },
+                px: { xs: 1, sm: 2, md: 2, lg: 2, xl: 2 },
                 color: "#000",
                 underline: "none",
                 transition: "all 0.3s linear",
@@ -72,7 +72,7 @@ const Navbar = () => {
               sx={{
                 fontFamily: "Roboto Mono, monospace",
                 fontSize: "1.2rem",
-                px: { xs: 0.2, sm: 2, md: 2, lg: 2, xl: 2 },
+                px: { xs: 1, sm: 2, md: 2, lg: 2, xl: 2 },
                 color: "#000",
                 underline: "none",
                 transition: "all 0.3s linear",
