@@ -42,10 +42,7 @@ const SearchBar = () => {
             },
           },
           width: { xs: "90%", sm: "85%", md: "85%", lg: "85%", xl: "85%" },
-          backgroundColor: "#f1f5f8",
-          fontFamily: "Roboto Mono, monospace",
         }}
-        InputProps={{ style: { fontFamily: "Roboto Mono, monospace" } }}
         size="small"
       />
     </Box>
